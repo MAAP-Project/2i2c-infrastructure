@@ -48,7 +48,7 @@ jupyterhub:
           choices:
             01-pangeo:
               display_name: Modified Pangeo Notebook
-              description: Pangeo based notebook with a Python environment
+              description: Recommended for most users and new users. General-purpose Python environment built on the Pangeo stack (xarray, dask, zarr, cartopy) for geoscience and Earth data workflows.
               kubespawner_override:
                 image: mas.dit.maap-project.org/root/maap-workspaces/2i2c/pangeo:develop
                 image_pull_policy: Always
@@ -69,7 +69,7 @@ jupyterhub:
                     runAsGroup: 1000
             02-rocker:
               display_name: Rocker Geospatial
-              description: JupyterHub environment with many R geospatial libraries pre-installed
+              description: Recommended for R-based geospatial workflows. Includes a comprehensive set of pre-installed libraries (sf, terra, raster, and more).
               kubespawner_override:
                 image: mas.dit.maap-project.org/root/maap-workspaces/2i2c/r:develop
                 image_pull_policy: Always
@@ -90,7 +90,7 @@ jupyterhub:
                     runAsGroup: 1000
             03-isce3:
               display_name: isce3
-              description: Pangeo based notebook with a Python environment and isce3
+              description: Recommended for SAR and interferometric radar processing. Pangeo Python environment with ISCE3 (InSAR Scientific Computing Environment) included.
               kubespawner_override:
                 image: mas.dit.maap-project.org/root/maap-workspaces/2i2c/isce3:develop
                 image_pull_policy: Always
@@ -111,7 +111,7 @@ jupyterhub:
                     runAsGroup: 1000
             04-qgis:
               display_name: QGIS on Linux Desktop
-              description: Linux desktop in the browser, with qgis installed
+              description: Recommended for interactive, GUI-based GIS work. Full Linux desktop environment in the browser with QGIS installed — choose this instead of a notebook interface.
               kubespawner_override:
                   # Launch people directly into the Linux desktop when they start
                 default_url: /desktop
@@ -129,7 +129,7 @@ jupyterhub:
               display_name: ~2 GB RAM, ~0.2 CPUs
               allowed_groups:
               - CPU:XS
-              description: Up to ~4 CPUs when available
+              description: Minimal resources, suitable for light exploration and testing. Shares a node with other users; may burst up to ~4 CPUs if the node is idle.
               kubespawner_override:
                 mem_guarantee: 1951419879
                 mem_limit: 1951419879
@@ -141,7 +141,7 @@ jupyterhub:
               display_name: ~4 GB RAM, ~0.5 CPUs
               allowed_groups:
               - CPU:S
-              description: Up to ~4 CPUs when available
+              description: Suitable for small datasets and lightweight analysis. Shares a node; may burst up to ~4 CPUs when available.
               kubespawner_override:
                 mem_guarantee: 3902839759
                 mem_limit: 3902839759
@@ -153,7 +153,7 @@ jupyterhub:
               display_name: ~7 GB RAM, ~0.9 CPUs
               allowed_groups:
               - CPU:M
-              description: Up to ~4 CPUs when available
+              description: Moderate resources for typical notebook workflows. Shares a node; may burst up to ~4 CPUs when available.
               kubespawner_override:
                 mem_guarantee: 7805679519
                 mem_limit: 7805679519
@@ -165,7 +165,7 @@ jupyterhub:
               display_name: ~15 GB RAM, ~1.8 CPUs
               allowed_groups:
               - CPU:L
-              description: Up to ~4 CPUs when available
+              description: Good for most data analysis tasks. Shares a node; may burst up to ~4 CPUs when available. (Default)
               kubespawner_override:
                 mem_guarantee: 15611359038
                 mem_limit: 15611359038
@@ -178,7 +178,7 @@ jupyterhub:
               display_name: ~29 GB RAM, ~4 CPUs
               allowed_groups:
               - CPU:XL
-              description: ~4 CPUs always available
+              description: Large memory for data-intensive work. CPUs are fully dedicated (not shared).
               kubespawner_override:
                 mem_guarantee: 31222718077
                 mem_limit: 31222718077
@@ -190,7 +190,7 @@ jupyterhub:
               display_name: ~60 GB RAM, ~8 CPUs
               allowed_groups:
               - CPU:XXL
-              description: Up to ~15 CPUs when available
+              description: Very large memory and CPU for heavy parallel workloads. Runs on a larger node; may burst up to ~15 CPUs.
               kubespawner_override:
                 mem_guarantee: 64020707016
                 mem_limit: 64020707016
@@ -202,7 +202,7 @@ jupyterhub:
               display_name: ~119 GB RAM, ~15 CPUs
               allowed_groups:
               - CPU:XXXL
-              description: ~15 CPUs always available
+              description: Maximum available resources. CPUs are fully dedicated. For the most demanding compute tasks.
               kubespawner_override:
                 mem_guarantee: 128041414033
                 mem_limit: 128041414033
@@ -231,12 +231,14 @@ jupyterhub:
           choices:
             pytorch:
               display_name: Pangeo PyTorch ML Notebook
+              description: Recommended for users wanting the latest upstream community release. Pangeo image with PyTorch, without MAAP-specific extensions.
               default: false
               slug: pytorch
               kubespawner_override:
                 image: quay.io/pangeo/pytorch-notebook:2024.11.11
             tensorflow2:
               display_name: Pangeo Tensorflow2 ML Notebook
+              description: Recommended for users wanting the latest upstream community release. Pangeo image with TensorFlow 2, without MAAP-specific extensions.
               default: true
               slug: tensorflow2
               kubespawner_override:
